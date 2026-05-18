@@ -140,7 +140,7 @@ header{margin-bottom:24px;}
   </div>
 </div>
 <div id="dre-content">
-  <div class="tab-nav"><button class="tab-btn" id="tab-jan" onclick="switchTab('jan')">📊 Janeiro 2026</button><button class="tab-btn" id="tab-fev" onclick="switchTab('fev')">📅 Fevereiro 2026</button><button class="tab-btn" id="tab-mar" onclick="switchTab('mar')">📅 Março 2026</button><button class="tab-btn" id="tab-abr" onclick="switchTab('abr')">📅 Abril 2026</button><button class="tab-btn active" id="tab-ytd" onclick="switchTab('ytd')">📈 YTD Consolidado</button></div>
+  <div class="tab-nav"><button class="tab-btn" id="tab-jan" onclick="switchTab('jan')">📊 Janeiro 2026</button><button class="tab-btn" id="tab-fev" onclick="switchTab('fev')">📅 Fevereiro 2026</button><button class="tab-btn" id="tab-mar" onclick="switchTab('mar')">📅 Março 2026</button><button class="tab-btn" id="tab-abr" onclick="switchTab('abr')">📅 Abril 2026</button><button class="tab-btn active" id="tab-ytd" onclick="switchTab('ytd')">📈 Acumulado (Jan–Abr)</button></div>
   <div id="content-jan" class="tab-content">
       <header><div class="header-top">
         <div><div class="brand-name">SIM.DIGITAL</div><div class="brand-sub">DRE Gerencial — REDEMETRO TELECOMUNICAÇÕES LTDA</div></div>
@@ -1755,19 +1755,19 @@ header{margin-bottom:24px;}
         <li>🎯 Distribuição de Lucros: R$ 52.003,00</li>
       </ul>
     </div>
-    </div><div id="content-ytd" class="tab-content">
+    </div><div id="content-ytd" class="tab-content active">
       <header><div class="header-top">
         <div><div class="brand-name">SIM.DIGITAL</div><div class="brand-sub">DRE Gerencial — REDEMETRO TELECOMUNICAÇÕES LTDA</div></div>
-        <div style="text-align:right;"><div class="periodo-badge">YTD 2026 (Jan–Abr)</div><div class="update-time">4 meses consolidados • Atualizado em 18/05/2026</div></div>
+        <div style="text-align:right;"><div class="periodo-badge">Acumulado 2026 (Jan–Abr)</div><div class="update-time">4 meses consolidados • Atualizado em 18/05/2026</div></div>
       </div></header>
       
       <div class="kpi-strip">
-        <div class="kpi-item"><div class="kpi-label">Receita Bruta YTD</div><div class="kpi-value">R$ 6.819.477,37</div><div class="kpi-pct">Jan–Abr 2026</div></div>
-        <div class="kpi-item"><div class="kpi-label">Receita Líquida YTD</div><div class="kpi-value accent">R$ 6.819.344,77</div><div class="kpi-pct">AV 100,0%</div></div>
-        <div class="kpi-item"><div class="kpi-label">Lucro Bruto YTD</div><div class="kpi-value">R$ 5.981.869,80</div><div class="kpi-pct pos">Margem 87.7%</div></div>
-        <div class="kpi-item"><div class="kpi-label">EBITDA YTD</div><div class="kpi-value">R$ 2.877.965,53</div><div class="kpi-pct pos">Margem 42.2%</div></div>
-        <div class="kpi-item"><div class="kpi-label">Resultado Líq. YTD</div><div class="kpi-value pos">R$ 241.281,46</div><div class="kpi-pct pos">Margem 3.5%</div></div>
-        <div class="kpi-item"><div class="kpi-label">Total Despesas YTD</div><div class="kpi-value">R$ 6.578.195,91</div><div class="kpi-pct">96.5% da RB</div></div>
+        <div class="kpi-item"><div class="kpi-label">Receita Bruta Acum.</div><div class="kpi-value">R$ 6.819.477,37</div><div class="kpi-pct">Jan–Abr 2026</div></div>
+        <div class="kpi-item"><div class="kpi-label">Receita Líquida Acum.</div><div class="kpi-value accent">R$ 6.819.344,77</div><div class="kpi-pct">AV 100,0%</div></div>
+        <div class="kpi-item"><div class="kpi-label">Lucro Bruto Acum.</div><div class="kpi-value">R$ 5.981.869,80</div><div class="kpi-pct pos">Margem 87.7%</div></div>
+        <div class="kpi-item"><div class="kpi-label">EBITDA Acum.</div><div class="kpi-value">R$ 2.877.965,53</div><div class="kpi-pct pos">Margem 42.2%</div></div>
+        <div class="kpi-item"><div class="kpi-label">Resultado Líq. Acum.</div><div class="kpi-value pos">R$ 241.281,46</div><div class="kpi-pct pos">Margem 3.5%</div></div>
+        <div class="kpi-item"><div class="kpi-label">Total Despesas Acum.</div><div class="kpi-value">R$ 6.578.195,91</div><div class="kpi-pct">96.5% da RB</div></div>
       </div>
       
       <div class="comp-grid"><div class="comp-card">
@@ -1806,7 +1806,7 @@ header{margin-bottom:24px;}
             <div class="card-header"><div class="card-title">📊 Comparativo Mensal — Jan a Abr 2026</div><div class="card-sub">Visão consolidada por linha do DRE</div></div>
             <div class="card-body">
               <table class="hist-table">
-                <thead><tr><th style="text-align:left;">Linha</th><th>jan/26</th><th>fev/26</th><th>mar/26</th><th>abr/26</th><th style="background:rgba(0,212,170,.08);">YTD</th></tr></thead>
+                <thead><tr><th style="text-align:left;">Linha</th><th>jan/26</th><th>fev/26</th><th>mar/26</th><th>abr/26</th><th style="background:rgba(0,212,170,.08);">Acumulado</th></tr></thead>
                 <tbody><tr style=""><td style="text-align:left !important;font-weight:500;">Receita Bruta</td><td style="color:var(--accent);">R$ 1.691.724,28</td><td style="color:var(--accent);">R$ 1.704.545,11</td><td style="color:var(--accent);">R$ 1.718.674,92</td><td style="color:var(--accent);">R$ 1.704.533,06</td><td style="color:var(--accent);font-weight:700;background:rgba(15,23,42,.4);">R$ 6.819.477,37</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Receita Líquida</td><td style="color:var(--accent2);">R$ 1.691.724,28</td><td style="color:var(--accent2);">R$ 1.704.545,11</td><td style="color:var(--accent2);">R$ 1.718.674,92</td><td style="color:var(--accent2);">R$ 1.704.400,46</td><td style="color:var(--accent2);font-weight:700;background:rgba(15,23,42,.4);">R$ 6.819.344,77</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Custos do Serviço</td><td style="color:var(--danger);">R$ 185.791,49</td><td style="color:var(--danger);">R$ 211.182,35</td><td style="color:var(--danger);">R$ 216.364,11</td><td style="color:var(--danger);">R$ 224.137,02</td><td style="color:var(--danger);font-weight:700;background:rgba(15,23,42,.4);">R$ 837.474,97</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Lucro Bruto</td><td style="color:var(--green);">R$ 1.505.932,79</td><td style="color:var(--green);">R$ 1.493.362,76</td><td style="color:var(--green);">R$ 1.502.310,81</td><td style="color:var(--green);">R$ 1.480.263,44</td><td style="color:var(--green);font-weight:700;background:rgba(15,23,42,.4);">R$ 5.981.869,80</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Despesas Administrativas</td><td style="color:var(--danger);">R$ 672.907,90</td><td style="color:var(--danger);">R$ 683.481,85</td><td style="color:var(--danger);">R$ 593.965,08</td><td style="color:var(--danger);">R$ 713.270,97</td><td style="color:var(--danger);font-weight:700;background:rgba(15,23,42,.4);">R$ 2.663.625,80</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Despesas Operacionais</td><td style="color:var(--danger);">R$ 128.138,02</td><td style="color:var(--danger);">R$ 112.687,20</td><td style="color:var(--danger);">R$ 96.738,22</td><td style="color:var(--danger);">R$ 102.715,03</td><td style="color:var(--danger);font-weight:700;background:rgba(15,23,42,.4);">R$ 440.278,47</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">EBITDA</td><td style="color:var(--warn);">R$ 704.886,87</td><td style="color:var(--warn);">R$ 697.193,71</td><td style="color:var(--warn);">R$ 811.607,51</td><td style="color:var(--warn);">R$ 664.277,44</td><td style="color:var(--warn);font-weight:700;background:rgba(15,23,42,.4);">R$ 2.877.965,53</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Investimentos</td><td style="color:var(--warn);">R$ 382.864,12</td><td style="color:var(--warn);">R$ 347.782,22</td><td style="color:var(--warn);">R$ 353.699,77</td><td style="color:var(--warn);">R$ 350.030,17</td><td style="color:var(--warn);font-weight:700;background:rgba(15,23,42,.4);">R$ 1.434.376,28</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Empréstimos/Financ.</td><td style="color:var(--warn);">R$ 13.476,64</td><td style="color:var(--warn);">R$ 26.683,20</td><td style="color:var(--warn);">R$ 55.763,65</td><td style="color:var(--warn);">R$ 43.224,40</td><td style="color:var(--warn);font-weight:700;background:rgba(15,23,42,.4);">R$ 139.147,89</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Distribuição de Lucros</td><td style="color:#3b82f6;">R$ 132.187,00</td><td style="color:#3b82f6;">R$ 129.338,96</td><td style="color:#3b82f6;">R$ 152.004,00</td><td style="color:#3b82f6;">R$ 52.003,00</td><td style="color:#3b82f6;font-weight:700;background:rgba(15,23,42,.4);">R$ 465.532,96</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Impostos</td><td style="color:var(--danger);">R$ 100.917,13</td><td style="color:var(--danger);">R$ 115.793,20</td><td style="color:var(--danger);">R$ 105.791,51</td><td style="color:var(--danger);">R$ 275.125,10</td><td style="color:var(--danger);font-weight:700;background:rgba(15,23,42,.4);">R$ 597.626,94</td></tr><tr style="background:rgba(0,212,170,.08);border-left:3px solid var(--accent);font-weight:700;"><td style="text-align:left !important;font-weight:700;">Resultado Líquido</td><td style="color:var(--green);">R$ 75.441,98</td><td style="color:var(--green);">R$ 77.596,13</td><td style="color:var(--green);">R$ 144.348,58</td><td style="color:var(--danger);">(R$ 56.105,23)</td><td style="color:var(--green);font-weight:700;background:rgba(15,23,42,.4);">R$ 241.281,46</td></tr></tbody>
               </table>
             </div>
@@ -1814,18 +1814,18 @@ header{margin-bottom:24px;}
         </div>
         <div class="right-col">
           <div class="card">
-            <div class="card-header"><div class="card-title">📈 Margens Acumuladas (YTD)</div></div>
+            <div class="card-header"><div class="card-title">📈 Margens Acumuladas</div><div class="card-sub">Jan a Abr 2026</div></div>
             <div class="card-body-pad">
       <div class="margin-bar">
-        <div class="margin-bar-label"><span class="margin-bar-name">Margem Bruta YTD</span><span class="margin-bar-val">87.7%</span></div>
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem Bruta Acumulada</span><span class="margin-bar-val">87.7%</span></div>
         <div class="margin-bar-track"><div class="margin-bar-fill" style="width:87.7%;background:linear-gradient(90deg,var(--accent),var(--accent2));"></div></div>
       </div>
       <div class="margin-bar">
-        <div class="margin-bar-label"><span class="margin-bar-name">Margem EBITDA YTD</span><span class="margin-bar-val">42.2%</span></div>
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem EBITDA Acumulada</span><span class="margin-bar-val">42.2%</span></div>
         <div class="margin-bar-track"><div class="margin-bar-fill" style="width:42.2%;background:var(--green);"></div></div>
       </div>
       <div class="margin-bar">
-        <div class="margin-bar-label"><span class="margin-bar-name">Margem Líquida YTD</span><span class="margin-bar-val" style="color:var(--green);">3.5%</span></div>
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem Líquida Acumulada</span><span class="margin-bar-val" style="color:var(--green);">3.5%</span></div>
         <div class="margin-bar-track"><div class="margin-bar-fill" style="width:3.5%;background:var(--green);"></div></div>
       </div>
     </div>
@@ -1872,12 +1872,12 @@ header{margin-bottom:24px;}
       </div>
       
       <div class="nota-tec">
-        <strong>📋 Notas Técnicas — YTD 2026</strong>
+        <strong>📋 Notas Técnicas — Acumulado 2026</strong>
         <ul class="nota-list">
           <li>📊 Período consolidado: 01/01/2026 a 30/04/2026 (4 meses)</li>
           <li>💼 Origem: Planilha Projeção 2026 — visão Diretoria (consolidada, sem PF/PJ)</li>
           <li>💸 Carga Tributária acumulada: R$ 597.626,94 (8.8% da Receita Bruta)</li>
-          <li>📈 EBITDA YTD: <strong>Saudável</strong> — margem 42.2%</li>
+          <li>📈 EBITDA Acumulado: <strong>Saudável</strong> — margem 42.2%</li>
           <li>🏦 Empréstimos e Financiamentos no período: R$ 139.147,89</li>
           <li>💰 Investimentos acumulados: R$ 1.434.376,28</li>
           <li>🎯 Distribuição de Lucros acumulada: R$ 465.532,96</li>
