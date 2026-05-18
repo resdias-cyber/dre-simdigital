@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DRE — SIM.DIGITAL | Diretoria 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e1a; --panel:#0f1626; --panel2:#131b2e; --border:#1e2d4a;
+  --text:#e8eef7; --subtle:#94a3b8; --muted:#64748b;
+  --accent:#00d4aa; --accent2:#3b82f6; --green:#22c55e; --warn:#f59e0b; --danger:#ef4444;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;min-height:100vh;font-size:13px;line-height:1.5;}
+body{background:radial-gradient(ellipse at top,rgba(0,212,170,.06) 0%,transparent 50%),radial-gradient(ellipse at bottom right,rgba(59,130,246,.04) 0%,transparent 50%),var(--bg);}
+
+/* LOGIN */
+.login-overlay{position:fixed;inset:0;background:rgba(10,14,26,.96);backdrop-filter:blur(12px);z-index:999;display:flex;align-items:center;justify-content:center;}
+.login-box{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:44px 40px;width:min(420px,92vw);box-shadow:0 30px 80px rgba(0,0,0,.6);}
+.login-brand{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;letter-spacing:1.5px;background:linear-gradient(120deg,var(--accent) 0%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-align:center;margin-bottom:6px;}
+.login-sub{text-align:center;color:var(--subtle);font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:32px;}
+.login-label{display:block;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;margin-top:14px;font-weight:600;}
+.login-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--text);font-size:14px;font-family:inherit;transition:all .2s;}
+.login-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,212,170,.15);}
+.login-btn{width:100%;background:linear-gradient(120deg,var(--accent) 0%,var(--accent2) 100%);color:#0a0e1a;border:none;border-radius:10px;padding:13px;font-size:13px;font-weight:700;letter-spacing:1.5px;cursor:pointer;margin-top:24px;font-family:inherit;transition:transform .15s,box-shadow .15s;}
+.login-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,212,170,.3);}
+.login-error{color:var(--danger);font-size:11px;text-align:center;margin-top:12px;min-height:14px;}
+.login-divider{height:1px;background:var(--border);margin:24px 0 14px;}
+.login-footer{text-align:center;color:var(--muted);font-size:9px;letter-spacing:1px;text-transform:uppercase;}
+#dre-content{display:none;}
+#dre-content.unlocked{display:block;}
+
+/* TABS */
+.tab-nav{display:flex;gap:0;background:var(--panel);border-bottom:1px solid var(--border);padding:0 24px;overflow-x:auto;position:sticky;top:0;z-index:50;}
+.tab-btn{background:transparent;color:var(--subtle);border:none;padding:16px 22px;font-size:12.5px;font-weight:500;cursor:pointer;font-family:inherit;letter-spacing:.3px;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600;}
+.tab-content{display:none;padding:28px 24px;max-width:1600px;margin:0 auto;}
+.tab-content.active{display:block;}
+
+/* HEADER */
+header{margin-bottom:24px;}
+.header-top{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;}
+.brand-name{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;letter-spacing:1px;background:linear-gradient(120deg,var(--accent) 0%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.brand-sub{color:var(--subtle);font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
+.periodo-badge{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:6px 14px;font-size:11px;color:var(--accent);font-weight:600;letter-spacing:.5px;}
+.update-time{color:var(--muted);font-size:10px;margin-top:6px;letter-spacing:.5px;}
+
+/* KPI STRIP */
+.kpi-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:24px;}
+@media(max-width:1100px){.kpi-strip{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:600px){.kpi-strip{grid-template-columns:repeat(2,1fr);}}
+.kpi-item{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px 18px;position:relative;overflow:hidden;}
+.kpi-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:.4;}
+.kpi-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:8px;}
+.kpi-value{font-size:clamp(14px,1.4vw,18px);font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:-.3px;}
+.kpi-value.accent{color:var(--accent);}
+.kpi-value.pos{color:var(--green);}
+.kpi-value.neg{color:var(--danger);}
+.kpi-pct{font-size:10.5px;color:var(--subtle);margin-top:4px;font-weight:500;}
+.kpi-pct.pos{color:var(--green);}
+.kpi-pct.neg{color:var(--danger);}
+
+/* GRID */
+.dashboard-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:20px;}
+@media(max-width:1100px){.dashboard-grid{grid-template-columns:1fr;}}
+
+/* CARD */
+.card{background:var(--panel);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+.card-header{padding:16px 20px;border-bottom:1px solid var(--border);background:var(--panel2);}
+.card-title{font-size:13px;font-weight:700;color:var(--text);letter-spacing:.5px;text-transform:uppercase;}
+.card-sub{font-size:10px;color:var(--muted);margin-top:3px;letter-spacing:.5px;}
+.card-body{padding:0;}
+.card-body-pad{padding:20px;}
+
+/* DRE TABLE */
+.dre-table{width:100%;border-collapse:collapse;font-size:12px;}
+.dre-table thead th{padding:12px 16px;text-align:left;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;background:var(--bg);border-bottom:1px solid var(--border);}
+.dre-table thead th:nth-child(3),.dre-table thead th:nth-child(4){text-align:right;}
+.dre-table tbody tr{transition:background .15s;}
+.dre-table tbody tr:hover{background:rgba(59,130,246,.04);}
+.dre-sub-row{cursor:pointer;}
+
+/* RIGHT COL */
+.right-col > .card{margin-bottom:16px;}
+.right-col > .card:last-child{margin-bottom:0;}
+
+/* MARGENS BARS */
+.margin-bar{margin-bottom:14px;}
+.margin-bar:last-child{margin-bottom:0;}
+.margin-bar-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
+.margin-bar-name{font-size:11px;color:var(--subtle);font-weight:500;}
+.margin-bar-val{font-size:13px;color:var(--text);font-weight:700;font-variant-numeric:tabular-nums;}
+.margin-bar-track{height:8px;background:rgba(15,23,42,.6);border-radius:4px;overflow:hidden;}
+.margin-bar-fill{height:100%;border-radius:4px;transition:width .6s ease;}
+
+/* WATERFALL */
+.waterfall{display:flex;align-items:flex-end;gap:8px;height:280px;padding:20px 0 40px;position:relative;overflow-x:auto;}
+.wf-bar{flex:1;min-width:80px;display:flex;flex-direction:column;align-items:center;position:relative;}
+.wf-bar-rect{width:100%;border-radius:4px 4px 0 0;transition:all .3s;position:relative;}
+.wf-bar-label{font-size:10px;color:var(--subtle);text-align:center;margin-top:10px;white-space:nowrap;}
+.wf-bar-val{font-size:10.5px;color:var(--text);font-variant-numeric:tabular-nums;font-weight:600;position:absolute;top:-22px;left:50%;transform:translateX(-50%);white-space:nowrap;}
+
+/* NOTA TÉCNICA */
+.nota-tec{background:var(--panel2);border-left:3px solid var(--warn);border-radius:8px;padding:14px 18px;margin-top:16px;font-size:11.5px;color:var(--subtle);line-height:1.7;}
+.nota-tec strong{color:var(--text);}
+.nota-list{list-style:none;padding:0;margin-top:10px;}
+.nota-list li{padding:4px 0;font-size:11px;color:var(--subtle);}
+
+/* HISTÓRICO */
+.hist-table{width:100%;border-collapse:collapse;font-size:12px;}
+.hist-table thead th{padding:12px 16px;text-align:left;font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;background:var(--bg);border-bottom:1px solid var(--border);}
+.hist-table thead th:not(:first-child){text-align:right;}
+.hist-table tbody td{padding:10px 16px;font-size:12px;border-bottom:1px solid rgba(30,45,74,.3);}
+.hist-table tbody td:not(:first-child){text-align:right;font-variant-numeric:tabular-nums;}
+.hist-table tbody tr:hover{background:rgba(59,130,246,.04);}
+
+/* COMPARATIVO 4 MESES */
+.comp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+@media(max-width:900px){.comp-grid{grid-template-columns:repeat(2,1fr);}}
+.comp-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;}
+.comp-card-month{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;}
+.comp-card-val{font-size:18px;font-weight:700;margin-top:8px;font-variant-numeric:tabular-nums;}
+</style>
+</head>
+<body>
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <div class="login-brand">SIM.DIGITAL</div>
+    <div class="login-sub">DRE Gerencial — Acesso Restrito</div>
+    <label class="login-label" for="loginUser">Login</label>
+    <input class="login-input" id="loginUser" type="text" placeholder="Digite seu login" autocomplete="off">
+    <label class="login-label" for="loginPass">Senha</label>
+    <input class="login-input" id="loginPass" type="password" placeholder="••••••••" autocomplete="off">
+    <button class="login-btn" onclick="doLogin()">ENTRAR</button>
+    <div class="login-error" id="loginError"></div>
+    <div class="login-divider"></div>
+    <div class="login-footer">REDEMETRO TELECOMUNICAÇÕES LTDA</div>
+  </div>
+</div>
+<div id="dre-content">
+  <div class="tab-nav"><button class="tab-btn" id="tab-jan" onclick="switchTab('jan')">📊 Janeiro 2026</button><button class="tab-btn" id="tab-fev" onclick="switchTab('fev')">📅 Fevereiro 2026</button><button class="tab-btn" id="tab-mar" onclick="switchTab('mar')">📅 Março 2026</button><button class="tab-btn" id="tab-abr" onclick="switchTab('abr')">📅 Abril 2026</button><button class="tab-btn active" id="tab-ytd" onclick="switchTab('ytd')">📈 YTD Consolidado</button></div>
+  <div id="content-jan" class="tab-content">
+      <header><div class="header-top">
+        <div><div class="brand-name">SIM.DIGITAL</div><div class="brand-sub">DRE Gerencial — REDEMETRO TELECOMUNICAÇÕES LTDA</div></div>
+        <div style="text-align:right;"><div class="periodo-badge">01/01/2026 — 31/01/2026</div><div class="update-time">Janeiro 2026 • Atualizado em 18/05/2026</div></div>
+      </div></header>
+      <div class="kpi-strip">
+      <div class="kpi-item"><div class="kpi-label">Receita Bruta</div><div class="kpi-value">R$ 1.691.724,28</div><div class="kpi-pct">JAN 2026</div></div>
+      <div class="kpi-item"><div class="kpi-label">Receita Líquida</div><div class="kpi-value accent">R$ 1.691.724,28</div><div class="kpi-pct">AV 100,0%</div></div>
+      <div class="kpi-item"><div class="kpi-label">Lucro Bruto</div><div class="kpi-value">R$ 1.505.932,79</div><div class="kpi-pct pos">Margem 89.0%</div></div>
+      <div class="kpi-item"><div class="kpi-label">EBITDA</div><div class="kpi-value">R$ 704.886,87</div><div class="kpi-pct pos">Margem 41.7%</div></div>
+      <div class="kpi-item"><div class="kpi-label">Resultado Líquido</div><div class="kpi-value pos">R$ 75.441,98</div><div class="kpi-pct pos">Margem 4.5%</div></div>
+      <div class="kpi-item"><div class="kpi-label">Total Despesas</div><div class="kpi-value">R$ 1.616.282,30</div><div class="kpi-pct">95.5% da RB</div></div>
+    </div>
+      <div class="dashboard-grid">
+        <div class="left-col">
+          <div class="card">
+            <div class="card-header"><div class="card-title">📊 DRE Estruturado</div><div class="card-sub">Demonstração de Resultado do Exercício</div></div>
+            <div class="card-body">
+              <table class="dre-table">
+                <thead><tr><th style="width:60px;">Código</th><th>Descrição</th><th>Valor</th><th style="width:80px;">AV %</th></tr></thead>
+                <tbody><tr class="dre-macro-row" data-macro="01" style="background:rgba(0,212,170,.08);border-left:3px solid var(--accent);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">01</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">TOTAL DE RECEITAS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 1.691.724,28</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">100.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="02" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">02</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) (-) DEVOLUÇÕES E ABATIMENTOS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 0,00</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-total-row" style="background:rgba(0,212,170,.06);border-left:4px solid var(--accent);">
+              <td colspan="2" style="padding:14px 16px;font-weight:700;font-size:13px;color:var(--text);letter-spacing:.3px;">= RECEITA LÍQUIDA</td>
+              <td style="padding:14px 16px;text-align:right;font-weight:700;font-size:13px;color:var(--green);font-variant-numeric:tabular-nums;">R$ 1.691.724,28</td>
+              <td style="padding:14px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">100.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="03" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">03</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) CUSTOS DO SERVIÇO PRESTADO</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 185.791,49</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">11.0%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="03" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">03.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">INTERCONEXÃO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 12.340,61</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.7%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="03" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">03.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">CONTEÚDOS DE TERCEIROS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 32.573,94</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">1.9%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="03" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">03.03</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">SERVIÇOS DE TERCEIROS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 4.850,00</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.3%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="03" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">03.04</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">ALUGUEIS OPERACIONAIS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 136.026,94</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">8.0%</td>
+            </tr>
+<tr class="dre-total-row" style="background:rgba(0,212,170,.06);border-left:4px solid var(--accent);">
+              <td colspan="2" style="padding:14px 16px;font-weight:700;font-size:13px;color:var(--text);letter-spacing:.3px;">= RESULTADO OPERACIONAL LÍQUIDO</td>
+              <td style="padding:14px 16px;text-align:right;font-weight:700;font-size:13px;color:var(--green);font-variant-numeric:tabular-nums;">R$ 1.505.932,79</td>
+              <td style="padding:14px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">89.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="04" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">04</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) DESPESAS ADMINISTRATIVAS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 672.907,90</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">39.8%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DESPESAS COM PESSOAL</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 360.082,33</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">21.3%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">ENCARGOS SOCIAIS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 140.557,93</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">8.3%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.03</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DESPESAS DE ESCRITÓRIO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 18.146,60</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">1.1%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.04</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">SISTEMA</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 15.013,63</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.9%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.05</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">ALUGUEIS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 14.332,29</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.8%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.06</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DESPESAS FINANCEIRAS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 7.814,00</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.5%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.07</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">SERVIÇOS DE TERCEIROS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 47.165,39</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">2.8%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.08</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">TAXAS E LICENÇAS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 5.638,14</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.3%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.09</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">COMUNICAÇÃO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 12.311,45</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.7%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.10</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">PROPAGANDA E MARKETING</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 42.408,54</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">2.5%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.11</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">Diretoria e Administração Geral</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 9.437,60</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.6%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="05" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">05</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) DESPESAS OPERACIONAIS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 128.138,02</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">7.6%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="05" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">05.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">FROTA</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 112.608,77</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">6.7%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="05" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">05.03</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DESPESAS COM VIAGENS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 15.529,25</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.9%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="06" style="background:rgba(245,158,11,.06);border-left:3px solid var(--warn);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">06</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) INVESTIMENTOS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 382.864,12</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">22.6%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="06" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">06.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">IMOBILIZADO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 371.138,18</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">21.9%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="06" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">06.03</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">ATIVO FIXO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 11.725,94</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.7%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="07" style="background:rgba(245,158,11,.06);border-left:3px solid var(--warn);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">07</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) EMPRÉSTIMOS / FINANCIAMENTOS e PAR</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 13.476,64</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">0.8%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="07" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">07.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">EMPRÉSTIMOS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 13.476,64</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.8%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="08" style="background:rgba(148,163,184,.06);border-left:3px solid var(--subtle);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">08</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">ADIANTAMENTOS A FORNECEDORES</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 0,00</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="09" style="background:rgba(148,163,184,.06);border-left:3px solid var(--subtle);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">09</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">ADIANTAMENTOS DE CLIENTES</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 0,00</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="10" style="background:rgba(59,130,246,.06);border-left:3px solid #3b82f6;">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">10</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) DISTRIBUIÇÃO DE LUCROS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 132.187,00</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">7.8%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="10" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">10.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">Distribuição de Lucros</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 132.187,00</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">7.8%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="11" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">11</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) IMPOSTOS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 100.917,13</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">6.0%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="11" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">11.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DEDUÇÕES DA RECEITA BRUTA</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 100.917,13</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">6.0%</td>
+            </tr>
+<tr class="dre-total-row" style="background:rgba(0,212,170,.12);border-left:4px solid var(--green);">
+              <td colspan="2" style="padding:14px 16px;font-weight:700;font-size:15px;color:var(--text);letter-spacing:.3px;">= RESULTADO LÍQUIDO</td>
+              <td style="padding:14px 16px;text-align:right;font-weight:700;font-size:15px;color:var(--green);font-variant-numeric:tabular-nums;">R$ 75.441,98</td>
+              <td style="padding:14px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">4.5%</td>
+            </tr></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card" style="margin-top:16px;">
+            <div class="card-header"><div class="card-title">💹 Cascata de Resultado</div><div class="card-sub">Receita Bruta → Resultado Líquido</div></div>
+            <div class="card-body-pad"><div class="waterfall"><div class="wf-bar">
+          <div class="wf-bar-val">R$ 1.691.724,28</div>
+          <div class="wf-bar-rect" style="height:220px;background:var(--accent);"></div>
+          <div class="wf-bar-label">Rec. Bruta</div>
+        </div><div class="wf-bar">
+          <div class="wf-bar-val">R$ 1.691.724,28</div>
+          <div class="wf-bar-rect" style="height:220px;background:var(--accent2);"></div>
+          <div class="wf-bar-label">Rec. Líquida</div>
+        </div><div class="wf-bar">
+          <div class="wf-bar-val">R$ 1.505.932,79</div>
+          <div class="wf-bar-rect" style="height:195px;background:#22c55e;"></div>
+          <div class="wf-bar-label">Lucro Bruto</div>
+        </div><div class="wf-bar">
+          <div class="wf-bar-val">R$ 704.886,87</div>
+          <div class="wf-bar-rect" style="height:91px;background:#f59e0b;"></div>
+          <div class="wf-bar-label">EBITDA</div>
+        </div><div class="wf-bar">
+          <div class="wf-bar-val">R$ 75.441,98</div>
+          <div class="wf-bar-rect" style="height:9px;background:var(--green);"></div>
+          <div class="wf-bar-label">Res. Líquido</div>
+        </div></div></div>
+          </div>
+        </div>
+        <div class="right-col">
+          <div class="card">
+            <div class="card-header"><div class="card-title">📈 Margens</div></div>
+            <div class="card-body-pad">
+      <div class="margin-bar">
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem Bruta</span><span class="margin-bar-val">89.0%</span></div>
+        <div class="margin-bar-track"><div class="margin-bar-fill" style="width:89.0%;background:linear-gradient(90deg,var(--accent),var(--accent2));"></div></div>
+      </div>
+      <div class="margin-bar">
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem EBITDA</span><span class="margin-bar-val">41.7%</span></div>
+        <div class="margin-bar-track"><div class="margin-bar-fill" style="width:41.7%;background:var(--green);"></div></div>
+      </div>
+      <div class="margin-bar">
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem Líquida</span><span class="margin-bar-val" style="color:var(--green);">4.5%</span></div>
+        <div class="margin-bar-track"><div class="margin-bar-fill" style="width:4.5%;background:var(--green);"></div></div>
+      </div>
+    </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">💸 Top Despesas (Subgrupos)</div><div class="card-sub">Administrativas + Operacionais</div></div>
+            <div class="card-body-pad"><div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.01">DESPESAS COM PESSOAL</span>
+            <span class="margin-bar-val">R$ 360.082,33</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:100.0%;background:var(--danger);"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.01</span><span>21.3% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.02">ENCARGOS SOCIAIS</span>
+            <span class="margin-bar-val">R$ 140.557,93</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:39.0%;background:#f97316;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.02</span><span>8.3% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="05.02">FROTA</span>
+            <span class="margin-bar-val">R$ 112.608,77</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:31.3%;background:var(--warn);"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>05.02</span><span>6.7% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.07">SERVIÇOS DE TERCEIROS</span>
+            <span class="margin-bar-val">R$ 47.165,39</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:13.1%;background:#eab308;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.07</span><span>2.8% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.10">PROPAGANDA E MARKETING</span>
+            <span class="margin-bar-val">R$ 42.408,54</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:11.8%;background:var(--accent2);"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.10</span><span>2.5% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.03">DESPESAS DE ESCRITÓRIO</span>
+            <span class="margin-bar-val">R$ 18.146,60</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:5.0%;background:#6366f1;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.03</span><span>1.1% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="05.03">DESPESAS COM VIAGENS</span>
+            <span class="margin-bar-val">R$ 15.529,25</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:4.3%;background:#8b5cf6;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>05.03</span><span>0.9% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.04">SISTEMA</span>
+            <span class="margin-bar-val">R$ 15.013,63</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:4.2%;background:var(--subtle);"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.04</span><span>0.9% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.05">ALUGUEIS</span>
+            <span class="margin-bar-val">R$ 14.332,29</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:4.0%;background:#64748b;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.05</span><span>0.8% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.09">COMUNICAÇÃO</span>
+            <span class="margin-bar-val">R$ 12.311,45</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:3.4%;background:#475569;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.09</span><span>0.7% da Rec. Líq.</span>
+          </div>
+        </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="nota-tec">
+      <strong>⚠️ DRE Gerencial — Visão Diretoria</strong>
+      <ul class="nota-list">
+        <li>📊 Período: 01/01/2026 — 31/01/2026</li>
+        <li>💼 Origem: Planilha Projeção 2026 (visão consolidada, sem segmentação PF/PJ)</li>
+        <li>💸 Carga Tributária: R$ 100.917,13 (6.0% sobre Receita Bruta)</li>
+        <li>📈 EBITDA: <strong>Saudável</strong> — margem 41.7% (Saudável ≥25% / Moderado 15–25% / Atenção &lt;15%)</li>
+        <li>🏦 Empréstimos e Financiamentos: R$ 13.476,64</li>
+        <li>💰 Investimentos no período: R$ 382.864,12</li>
+        <li>🎯 Distribuição de Lucros: R$ 132.187,00</li>
+      </ul>
+    </div>
+    </div><div id="content-fev" class="tab-content">
+      <header><div class="header-top">
+        <div><div class="brand-name">SIM.DIGITAL</div><div class="brand-sub">DRE Gerencial — REDEMETRO TELECOMUNICAÇÕES LTDA</div></div>
+        <div style="text-align:right;"><div class="periodo-badge">01/02/2026 — 28/02/2026</div><div class="update-time">Fevereiro 2026 • Atualizado em 18/05/2026</div></div>
+      </div></header>
+      <div class="kpi-strip">
+      <div class="kpi-item"><div class="kpi-label">Receita Bruta</div><div class="kpi-value">R$ 1.704.545,11</div><div class="kpi-pct">FEV 2026</div></div>
+      <div class="kpi-item"><div class="kpi-label">Receita Líquida</div><div class="kpi-value accent">R$ 1.704.545,11</div><div class="kpi-pct">AV 100,0%</div></div>
+      <div class="kpi-item"><div class="kpi-label">Lucro Bruto</div><div class="kpi-value">R$ 1.493.362,76</div><div class="kpi-pct pos">Margem 87.6%</div></div>
+      <div class="kpi-item"><div class="kpi-label">EBITDA</div><div class="kpi-value">R$ 697.193,71</div><div class="kpi-pct pos">Margem 40.9%</div></div>
+      <div class="kpi-item"><div class="kpi-label">Resultado Líquido</div><div class="kpi-value pos">R$ 77.596,13</div><div class="kpi-pct pos">Margem 4.6%</div></div>
+      <div class="kpi-item"><div class="kpi-label">Total Despesas</div><div class="kpi-value">R$ 1.626.948,98</div><div class="kpi-pct">95.4% da RB</div></div>
+    </div>
+      <div class="dashboard-grid">
+        <div class="left-col">
+          <div class="card">
+            <div class="card-header"><div class="card-title">📊 DRE Estruturado</div><div class="card-sub">Demonstração de Resultado do Exercício</div></div>
+            <div class="card-body">
+              <table class="dre-table">
+                <thead><tr><th style="width:60px;">Código</th><th>Descrição</th><th>Valor</th><th style="width:80px;">AV %</th></tr></thead>
+                <tbody><tr class="dre-macro-row" data-macro="01" style="background:rgba(0,212,170,.08);border-left:3px solid var(--accent);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">01</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">TOTAL DE RECEITAS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 1.704.545,11</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">100.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="02" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">02</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) (-) DEVOLUÇÕES E ABATIMENTOS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 0,00</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-total-row" style="background:rgba(0,212,170,.06);border-left:4px solid var(--accent);">
+              <td colspan="2" style="padding:14px 16px;font-weight:700;font-size:13px;color:var(--text);letter-spacing:.3px;">= RECEITA LÍQUIDA</td>
+              <td style="padding:14px 16px;text-align:right;font-weight:700;font-size:13px;color:var(--green);font-variant-numeric:tabular-nums;">R$ 1.704.545,11</td>
+              <td style="padding:14px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">100.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="03" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">03</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) CUSTOS DO SERVIÇO PRESTADO</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 211.182,35</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">12.4%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="03" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">03.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">INTERCONEXÃO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 16.083,98</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.9%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="03" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">03.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">CONTEÚDOS DE TERCEIROS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 34.167,61</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">2.0%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="03" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">03.03</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">SERVIÇOS DE TERCEIROS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 24.482,80</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">1.4%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="03" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">03.04</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">ALUGUEIS OPERACIONAIS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 136.447,96</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">8.0%</td>
+            </tr>
+<tr class="dre-total-row" style="background:rgba(0,212,170,.06);border-left:4px solid var(--accent);">
+              <td colspan="2" style="padding:14px 16px;font-weight:700;font-size:13px;color:var(--text);letter-spacing:.3px;">= RESULTADO OPERACIONAL LÍQUIDO</td>
+              <td style="padding:14px 16px;text-align:right;font-weight:700;font-size:13px;color:var(--green);font-variant-numeric:tabular-nums;">R$ 1.493.362,76</td>
+              <td style="padding:14px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">87.6%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="04" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">04</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) DESPESAS ADMINISTRATIVAS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 683.481,85</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">40.1%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DESPESAS COM PESSOAL</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 389.584,87</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">22.9%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">ENCARGOS SOCIAIS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 124.526,63</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">7.3%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.03</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DESPESAS DE ESCRITÓRIO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 31.432,43</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">1.8%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.04</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">SISTEMA</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 14.904,10</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.9%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.05</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">ALUGUEIS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 15.093,93</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.9%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.06</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DESPESAS FINANCEIRAS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 7.746,07</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.5%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.07</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">SERVIÇOS DE TERCEIROS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 31.360,08</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">1.8%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.08</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">TAXAS E LICENÇAS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 11.210,45</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.7%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.09</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">COMUNICAÇÃO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 12.281,13</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.7%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.10</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">PROPAGANDA E MARKETING</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 45.342,16</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">2.7%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="05" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">05</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) DESPESAS OPERACIONAIS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 112.687,20</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">6.6%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="05" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">05.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">MANUTENÇÕES</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 1.420,00</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.1%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="05" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">05.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">FROTA</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 111.099,20</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">6.5%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="05" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">05.03</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DESPESAS COM VIAGENS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 168,00</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="06" style="background:rgba(245,158,11,.06);border-left:3px solid var(--warn);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">06</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) INVESTIMENTOS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 347.782,22</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">20.4%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="06" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">06.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">IMOBILIZADO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 334.991,47</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">19.7%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="06" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">06.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">INFRAESTRURA</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 188,00</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="06" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">06.03</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">ATIVO FIXO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 12.602,75</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.7%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="07" style="background:rgba(245,158,11,.06);border-left:3px solid var(--warn);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">07</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) EMPRÉSTIMOS / FINANCIAMENTOS e PAR</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 26.683,20</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">1.6%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="07" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">07.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">FINANCIAMENTOS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 26.683,20</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">1.6%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="08" style="background:rgba(148,163,184,.06);border-left:3px solid var(--subtle);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">08</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">ADIANTAMENTOS A FORNECEDORES</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 0,00</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="09" style="background:rgba(148,163,184,.06);border-left:3px solid var(--subtle);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">09</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">ADIANTAMENTOS DE CLIENTES</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 0,00</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="10" style="background:rgba(59,130,246,.06);border-left:3px solid #3b82f6;">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">10</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) DISTRIBUIÇÃO DE LUCROS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 129.338,96</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">7.6%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="10" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">10.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">Distribuição de Lucros</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 129.338,96</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">7.6%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="11" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">11</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) IMPOSTOS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 115.793,20</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">6.8%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="11" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">11.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DEDUÇÕES DA RECEITA BRUTA</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 115.793,20</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">6.8%</td>
+            </tr>
+<tr class="dre-total-row" style="background:rgba(0,212,170,.12);border-left:4px solid var(--green);">
+              <td colspan="2" style="padding:14px 16px;font-weight:700;font-size:15px;color:var(--text);letter-spacing:.3px;">= RESULTADO LÍQUIDO</td>
+              <td style="padding:14px 16px;text-align:right;font-weight:700;font-size:15px;color:var(--green);font-variant-numeric:tabular-nums;">R$ 77.596,13</td>
+              <td style="padding:14px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">4.6%</td>
+            </tr></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card" style="margin-top:16px;">
+            <div class="card-header"><div class="card-title">💹 Cascata de Resultado</div><div class="card-sub">Receita Bruta → Resultado Líquido</div></div>
+            <div class="card-body-pad"><div class="waterfall"><div class="wf-bar">
+          <div class="wf-bar-val">R$ 1.704.545,11</div>
+          <div class="wf-bar-rect" style="height:220px;background:var(--accent);"></div>
+          <div class="wf-bar-label">Rec. Bruta</div>
+        </div><div class="wf-bar">
+          <div class="wf-bar-val">R$ 1.704.545,11</div>
+          <div class="wf-bar-rect" style="height:220px;background:var(--accent2);"></div>
+          <div class="wf-bar-label">Rec. Líquida</div>
+        </div><div class="wf-bar">
+          <div class="wf-bar-val">R$ 1.493.362,76</div>
+          <div class="wf-bar-rect" style="height:192px;background:#22c55e;"></div>
+          <div class="wf-bar-label">Lucro Bruto</div>
+        </div><div class="wf-bar">
+          <div class="wf-bar-val">R$ 697.193,71</div>
+          <div class="wf-bar-rect" style="height:89px;background:#f59e0b;"></div>
+          <div class="wf-bar-label">EBITDA</div>
+        </div><div class="wf-bar">
+          <div class="wf-bar-val">R$ 77.596,13</div>
+          <div class="wf-bar-rect" style="height:10px;background:var(--green);"></div>
+          <div class="wf-bar-label">Res. Líquido</div>
+        </div></div></div>
+          </div>
+        </div>
+        <div class="right-col">
+          <div class="card">
+            <div class="card-header"><div class="card-title">📈 Margens</div></div>
+            <div class="card-body-pad">
+      <div class="margin-bar">
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem Bruta</span><span class="margin-bar-val">87.6%</span></div>
+        <div class="margin-bar-track"><div class="margin-bar-fill" style="width:87.6%;background:linear-gradient(90deg,var(--accent),var(--accent2));"></div></div>
+      </div>
+      <div class="margin-bar">
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem EBITDA</span><span class="margin-bar-val">40.9%</span></div>
+        <div class="margin-bar-track"><div class="margin-bar-fill" style="width:40.9%;background:var(--green);"></div></div>
+      </div>
+      <div class="margin-bar">
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem Líquida</span><span class="margin-bar-val" style="color:var(--green);">4.6%</span></div>
+        <div class="margin-bar-track"><div class="margin-bar-fill" style="width:4.6%;background:var(--green);"></div></div>
+      </div>
+    </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">💸 Top Despesas (Subgrupos)</div><div class="card-sub">Administrativas + Operacionais</div></div>
+            <div class="card-body-pad"><div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.01">DESPESAS COM PESSOAL</span>
+            <span class="margin-bar-val">R$ 389.584,87</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:100.0%;background:var(--danger);"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.01</span><span>22.9% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.02">ENCARGOS SOCIAIS</span>
+            <span class="margin-bar-val">R$ 124.526,63</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:32.0%;background:#f97316;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.02</span><span>7.3% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="05.02">FROTA</span>
+            <span class="margin-bar-val">R$ 111.099,20</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:28.5%;background:var(--warn);"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>05.02</span><span>6.5% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.10">PROPAGANDA E MARKETING</span>
+            <span class="margin-bar-val">R$ 45.342,16</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:11.6%;background:#eab308;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.10</span><span>2.7% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.03">DESPESAS DE ESCRITÓRIO</span>
+            <span class="margin-bar-val">R$ 31.432,43</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:8.1%;background:var(--accent2);"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.03</span><span>1.8% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.07">SERVIÇOS DE TERCEIROS</span>
+            <span class="margin-bar-val">R$ 31.360,08</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:8.0%;background:#6366f1;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.07</span><span>1.8% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.05">ALUGUEIS</span>
+            <span class="margin-bar-val">R$ 15.093,93</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:3.9%;background:#8b5cf6;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.05</span><span>0.9% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.04">SISTEMA</span>
+            <span class="margin-bar-val">R$ 14.904,10</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:3.8%;background:var(--subtle);"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.04</span><span>0.9% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.09">COMUNICAÇÃO</span>
+            <span class="margin-bar-val">R$ 12.281,13</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:3.2%;background:#64748b;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.09</span><span>0.7% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.08">TAXAS E LICENÇAS</span>
+            <span class="margin-bar-val">R$ 11.210,45</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:2.9%;background:#475569;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.08</span><span>0.7% da Rec. Líq.</span>
+          </div>
+        </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="nota-tec">
+      <strong>⚠️ DRE Gerencial — Visão Diretoria</strong>
+      <ul class="nota-list">
+        <li>📊 Período: 01/02/2026 — 28/02/2026</li>
+        <li>💼 Origem: Planilha Projeção 2026 (visão consolidada, sem segmentação PF/PJ)</li>
+        <li>💸 Carga Tributária: R$ 115.793,20 (6.8% sobre Receita Bruta)</li>
+        <li>📈 EBITDA: <strong>Saudável</strong> — margem 40.9% (Saudável ≥25% / Moderado 15–25% / Atenção &lt;15%)</li>
+        <li>🏦 Empréstimos e Financiamentos: R$ 26.683,20</li>
+        <li>💰 Investimentos no período: R$ 347.782,22</li>
+        <li>🎯 Distribuição de Lucros: R$ 129.338,96</li>
+      </ul>
+    </div>
+    </div><div id="content-mar" class="tab-content">
+      <header><div class="header-top">
+        <div><div class="brand-name">SIM.DIGITAL</div><div class="brand-sub">DRE Gerencial — REDEMETRO TELECOMUNICAÇÕES LTDA</div></div>
+        <div style="text-align:right;"><div class="periodo-badge">01/03/2026 — 31/03/2026</div><div class="update-time">Março 2026 • Atualizado em 18/05/2026</div></div>
+      </div></header>
+      <div class="kpi-strip">
+      <div class="kpi-item"><div class="kpi-label">Receita Bruta</div><div class="kpi-value">R$ 1.718.674,92</div><div class="kpi-pct">MAR 2026</div></div>
+      <div class="kpi-item"><div class="kpi-label">Receita Líquida</div><div class="kpi-value accent">R$ 1.718.674,92</div><div class="kpi-pct">AV 100,0%</div></div>
+      <div class="kpi-item"><div class="kpi-label">Lucro Bruto</div><div class="kpi-value">R$ 1.502.310,81</div><div class="kpi-pct pos">Margem 87.4%</div></div>
+      <div class="kpi-item"><div class="kpi-label">EBITDA</div><div class="kpi-value">R$ 811.607,51</div><div class="kpi-pct pos">Margem 47.2%</div></div>
+      <div class="kpi-item"><div class="kpi-label">Resultado Líquido</div><div class="kpi-value pos">R$ 144.348,58</div><div class="kpi-pct pos">Margem 8.4%</div></div>
+      <div class="kpi-item"><div class="kpi-label">Total Despesas</div><div class="kpi-value">R$ 1.574.326,34</div><div class="kpi-pct">91.6% da RB</div></div>
+    </div>
+      <div class="dashboard-grid">
+        <div class="left-col">
+          <div class="card">
+            <div class="card-header"><div class="card-title">📊 DRE Estruturado</div><div class="card-sub">Demonstração de Resultado do Exercício</div></div>
+            <div class="card-body">
+              <table class="dre-table">
+                <thead><tr><th style="width:60px;">Código</th><th>Descrição</th><th>Valor</th><th style="width:80px;">AV %</th></tr></thead>
+                <tbody><tr class="dre-macro-row" data-macro="01" style="background:rgba(0,212,170,.08);border-left:3px solid var(--accent);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">01</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">TOTAL DE RECEITAS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 1.718.674,92</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">100.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="02" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">02</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) (-) DEVOLUÇÕES E ABATIMENTOS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 0,00</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-total-row" style="background:rgba(0,212,170,.06);border-left:4px solid var(--accent);">
+              <td colspan="2" style="padding:14px 16px;font-weight:700;font-size:13px;color:var(--text);letter-spacing:.3px;">= RECEITA LÍQUIDA</td>
+              <td style="padding:14px 16px;text-align:right;font-weight:700;font-size:13px;color:var(--green);font-variant-numeric:tabular-nums;">R$ 1.718.674,92</td>
+              <td style="padding:14px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">100.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="03" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">03</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) CUSTOS DO SERVIÇO PRESTADO</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 216.364,11</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">12.6%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="03" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">03.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">INTERCONEXÃO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 10.637,38</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.6%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="03" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">03.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">CONTEÚDOS DE TERCEIROS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 35.480,27</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">2.1%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="03" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">03.03</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">SERVIÇOS DE TERCEIROS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 32.144,30</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">1.9%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="03" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">03.04</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">ALUGUEIS OPERACIONAIS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 138.102,16</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">8.0%</td>
+            </tr>
+<tr class="dre-total-row" style="background:rgba(0,212,170,.06);border-left:4px solid var(--accent);">
+              <td colspan="2" style="padding:14px 16px;font-weight:700;font-size:13px;color:var(--text);letter-spacing:.3px;">= RESULTADO OPERACIONAL LÍQUIDO</td>
+              <td style="padding:14px 16px;text-align:right;font-weight:700;font-size:13px;color:var(--green);font-variant-numeric:tabular-nums;">R$ 1.502.310,81</td>
+              <td style="padding:14px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">87.4%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="04" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">04</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) DESPESAS ADMINISTRATIVAS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 593.965,08</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">34.6%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DESPESAS COM PESSOAL</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 325.317,50</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">18.9%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">ENCARGOS SOCIAIS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 119.609,58</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">7.0%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.03</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DESPESAS DE ESCRITÓRIO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 15.989,01</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.9%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.04</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">SISTEMA</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 16.316,65</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.9%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.05</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">ALUGUEIS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 15.382,83</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.9%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.06</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DESPESAS FINANCEIRAS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 7.921,05</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.5%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.07</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">SERVIÇOS DE TERCEIROS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 41.985,12</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">2.4%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.08</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">TAXAS E LICENÇAS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 6.437,42</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.4%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.09</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">COMUNICAÇÃO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 12.265,03</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.7%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.10</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">PROPAGANDA E MARKETING</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 32.740,89</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">1.9%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="05" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">05</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) DESPESAS OPERACIONAIS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 96.738,22</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">5.6%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="05" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">05.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">MANUTENÇÕES</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 590,00</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="05" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">05.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">FROTA</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 93.834,32</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">5.5%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="05" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">05.03</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DESPESAS COM VIAGENS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 2.313,90</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.1%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="06" style="background:rgba(245,158,11,.06);border-left:3px solid var(--warn);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">06</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) INVESTIMENTOS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 353.699,77</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">20.6%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="06" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">06.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">IMOBILIZADO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 340.752,60</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">19.8%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="06" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">06.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">INFRAESTRURA</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 150,00</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="06" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">06.03</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">ATIVO FIXO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 12.797,17</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.7%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="07" style="background:rgba(245,158,11,.06);border-left:3px solid var(--warn);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">07</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) EMPRÉSTIMOS / FINANCIAMENTOS e PAR</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 55.763,65</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">3.2%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="07" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">07.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">EMPRÉSTIMOS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 26.953,28</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">1.6%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="07" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">07.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">FINANCIAMENTOS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 28.810,37</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">1.7%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="08" style="background:rgba(148,163,184,.06);border-left:3px solid var(--subtle);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">08</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">ADIANTAMENTOS A FORNECEDORES</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 0,00</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="09" style="background:rgba(148,163,184,.06);border-left:3px solid var(--subtle);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">09</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">ADIANTAMENTOS DE CLIENTES</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 0,00</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="10" style="background:rgba(59,130,246,.06);border-left:3px solid #3b82f6;">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">10</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) DISTRIBUIÇÃO DE LUCROS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 152.004,00</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">8.8%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="10" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">10.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">Distribuição de Lucros</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 152.004,00</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">8.8%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="11" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">11</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) IMPOSTOS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 105.791,51</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">6.2%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="11" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">11.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DEDUÇÕES DA RECEITA BRUTA</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 105.791,51</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">6.2%</td>
+            </tr>
+<tr class="dre-total-row" style="background:rgba(0,212,170,.12);border-left:4px solid var(--green);">
+              <td colspan="2" style="padding:14px 16px;font-weight:700;font-size:15px;color:var(--text);letter-spacing:.3px;">= RESULTADO LÍQUIDO</td>
+              <td style="padding:14px 16px;text-align:right;font-weight:700;font-size:15px;color:var(--green);font-variant-numeric:tabular-nums;">R$ 144.348,58</td>
+              <td style="padding:14px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">8.4%</td>
+            </tr></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card" style="margin-top:16px;">
+            <div class="card-header"><div class="card-title">💹 Cascata de Resultado</div><div class="card-sub">Receita Bruta → Resultado Líquido</div></div>
+            <div class="card-body-pad"><div class="waterfall"><div class="wf-bar">
+          <div class="wf-bar-val">R$ 1.718.674,92</div>
+          <div class="wf-bar-rect" style="height:220px;background:var(--accent);"></div>
+          <div class="wf-bar-label">Rec. Bruta</div>
+        </div><div class="wf-bar">
+          <div class="wf-bar-val">R$ 1.718.674,92</div>
+          <div class="wf-bar-rect" style="height:220px;background:var(--accent2);"></div>
+          <div class="wf-bar-label">Rec. Líquida</div>
+        </div><div class="wf-bar">
+          <div class="wf-bar-val">R$ 1.502.310,81</div>
+          <div class="wf-bar-rect" style="height:192px;background:#22c55e;"></div>
+          <div class="wf-bar-label">Lucro Bruto</div>
+        </div><div class="wf-bar">
+          <div class="wf-bar-val">R$ 811.607,51</div>
+          <div class="wf-bar-rect" style="height:103px;background:#f59e0b;"></div>
+          <div class="wf-bar-label">EBITDA</div>
+        </div><div class="wf-bar">
+          <div class="wf-bar-val">R$ 144.348,58</div>
+          <div class="wf-bar-rect" style="height:18px;background:var(--green);"></div>
+          <div class="wf-bar-label">Res. Líquido</div>
+        </div></div></div>
+          </div>
+        </div>
+        <div class="right-col">
+          <div class="card">
+            <div class="card-header"><div class="card-title">📈 Margens</div></div>
+            <div class="card-body-pad">
+      <div class="margin-bar">
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem Bruta</span><span class="margin-bar-val">87.4%</span></div>
+        <div class="margin-bar-track"><div class="margin-bar-fill" style="width:87.4%;background:linear-gradient(90deg,var(--accent),var(--accent2));"></div></div>
+      </div>
+      <div class="margin-bar">
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem EBITDA</span><span class="margin-bar-val">47.2%</span></div>
+        <div class="margin-bar-track"><div class="margin-bar-fill" style="width:47.2%;background:var(--green);"></div></div>
+      </div>
+      <div class="margin-bar">
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem Líquida</span><span class="margin-bar-val" style="color:var(--green);">8.4%</span></div>
+        <div class="margin-bar-track"><div class="margin-bar-fill" style="width:8.4%;background:var(--green);"></div></div>
+      </div>
+    </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">💸 Top Despesas (Subgrupos)</div><div class="card-sub">Administrativas + Operacionais</div></div>
+            <div class="card-body-pad"><div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.01">DESPESAS COM PESSOAL</span>
+            <span class="margin-bar-val">R$ 325.317,50</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:100.0%;background:var(--danger);"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.01</span><span>18.9% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.02">ENCARGOS SOCIAIS</span>
+            <span class="margin-bar-val">R$ 119.609,58</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:36.8%;background:#f97316;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.02</span><span>7.0% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="05.02">FROTA</span>
+            <span class="margin-bar-val">R$ 93.834,32</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:28.8%;background:var(--warn);"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>05.02</span><span>5.5% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.07">SERVIÇOS DE TERCEIROS</span>
+            <span class="margin-bar-val">R$ 41.985,12</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:12.9%;background:#eab308;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.07</span><span>2.4% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.10">PROPAGANDA E MARKETING</span>
+            <span class="margin-bar-val">R$ 32.740,89</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:10.1%;background:var(--accent2);"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.10</span><span>1.9% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.04">SISTEMA</span>
+            <span class="margin-bar-val">R$ 16.316,65</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:5.0%;background:#6366f1;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.04</span><span>0.9% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.03">DESPESAS DE ESCRITÓRIO</span>
+            <span class="margin-bar-val">R$ 15.989,01</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:4.9%;background:#8b5cf6;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.03</span><span>0.9% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.05">ALUGUEIS</span>
+            <span class="margin-bar-val">R$ 15.382,83</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:4.7%;background:var(--subtle);"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.05</span><span>0.9% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.09">COMUNICAÇÃO</span>
+            <span class="margin-bar-val">R$ 12.265,03</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:3.8%;background:#64748b;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.09</span><span>0.7% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.06">DESPESAS FINANCEIRAS</span>
+            <span class="margin-bar-val">R$ 7.921,05</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:2.4%;background:#475569;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.06</span><span>0.5% da Rec. Líq.</span>
+          </div>
+        </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="nota-tec">
+      <strong>⚠️ DRE Gerencial — Visão Diretoria</strong>
+      <ul class="nota-list">
+        <li>📊 Período: 01/03/2026 — 31/03/2026</li>
+        <li>💼 Origem: Planilha Projeção 2026 (visão consolidada, sem segmentação PF/PJ)</li>
+        <li>💸 Carga Tributária: R$ 105.791,51 (6.2% sobre Receita Bruta)</li>
+        <li>📈 EBITDA: <strong>Saudável</strong> — margem 47.2% (Saudável ≥25% / Moderado 15–25% / Atenção &lt;15%)</li>
+        <li>🏦 Empréstimos e Financiamentos: R$ 55.763,65</li>
+        <li>💰 Investimentos no período: R$ 353.699,77</li>
+        <li>🎯 Distribuição de Lucros: R$ 152.004,00</li>
+      </ul>
+    </div>
+    </div><div id="content-abr" class="tab-content">
+      <header><div class="header-top">
+        <div><div class="brand-name">SIM.DIGITAL</div><div class="brand-sub">DRE Gerencial — REDEMETRO TELECOMUNICAÇÕES LTDA</div></div>
+        <div style="text-align:right;"><div class="periodo-badge">01/04/2026 — 30/04/2026</div><div class="update-time">Abril 2026 • Atualizado em 18/05/2026</div></div>
+      </div></header>
+      <div class="kpi-strip">
+      <div class="kpi-item"><div class="kpi-label">Receita Bruta</div><div class="kpi-value">R$ 1.704.533,06</div><div class="kpi-pct">ABR 2026</div></div>
+      <div class="kpi-item"><div class="kpi-label">Receita Líquida</div><div class="kpi-value accent">R$ 1.704.400,46</div><div class="kpi-pct">AV 100,0%</div></div>
+      <div class="kpi-item"><div class="kpi-label">Lucro Bruto</div><div class="kpi-value">R$ 1.480.263,44</div><div class="kpi-pct pos">Margem 86.8%</div></div>
+      <div class="kpi-item"><div class="kpi-label">EBITDA</div><div class="kpi-value">R$ 664.277,44</div><div class="kpi-pct pos">Margem 39.0%</div></div>
+      <div class="kpi-item"><div class="kpi-label">Resultado Líquido</div><div class="kpi-value neg">(R$ 56.105,23)</div><div class="kpi-pct neg">Margem -3.3%</div></div>
+      <div class="kpi-item"><div class="kpi-label">Total Despesas</div><div class="kpi-value">R$ 1.760.638,29</div><div class="kpi-pct">103.3% da RB</div></div>
+    </div>
+      <div class="dashboard-grid">
+        <div class="left-col">
+          <div class="card">
+            <div class="card-header"><div class="card-title">📊 DRE Estruturado</div><div class="card-sub">Demonstração de Resultado do Exercício</div></div>
+            <div class="card-body">
+              <table class="dre-table">
+                <thead><tr><th style="width:60px;">Código</th><th>Descrição</th><th>Valor</th><th style="width:80px;">AV %</th></tr></thead>
+                <tbody><tr class="dre-macro-row" data-macro="01" style="background:rgba(0,212,170,.08);border-left:3px solid var(--accent);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">01</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">TOTAL DE RECEITAS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 1.704.533,06</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">100.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="02" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">02</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) (-) DEVOLUÇÕES E ABATIMENTOS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 132,60</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="02" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">02.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">(-) DEVOLUÇÃO E ABATIMENTOS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 132,60</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-total-row" style="background:rgba(0,212,170,.06);border-left:4px solid var(--accent);">
+              <td colspan="2" style="padding:14px 16px;font-weight:700;font-size:13px;color:var(--text);letter-spacing:.3px;">= RECEITA LÍQUIDA</td>
+              <td style="padding:14px 16px;text-align:right;font-weight:700;font-size:13px;color:var(--green);font-variant-numeric:tabular-nums;">R$ 1.704.400,46</td>
+              <td style="padding:14px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">100.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="03" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">03</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) CUSTOS DO SERVIÇO PRESTADO</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 224.137,02</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">13.2%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="03" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">03.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">INTERCONEXÃO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 18.017,83</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">1.1%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="03" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">03.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">CONTEÚDOS DE TERCEIROS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 37.124,94</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">2.2%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="03" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">03.03</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">SERVIÇOS DE TERCEIROS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 30.461,80</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">1.8%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="03" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">03.04</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">ALUGUEIS OPERACIONAIS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 138.532,45</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">8.1%</td>
+            </tr>
+<tr class="dre-total-row" style="background:rgba(0,212,170,.06);border-left:4px solid var(--accent);">
+              <td colspan="2" style="padding:14px 16px;font-weight:700;font-size:13px;color:var(--text);letter-spacing:.3px;">= RESULTADO OPERACIONAL LÍQUIDO</td>
+              <td style="padding:14px 16px;text-align:right;font-weight:700;font-size:13px;color:var(--green);font-variant-numeric:tabular-nums;">R$ 1.480.263,44</td>
+              <td style="padding:14px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">86.8%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="04" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">04</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) DESPESAS ADMINISTRATIVAS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 713.270,97</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">41.8%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DESPESAS COM PESSOAL</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 368.733,38</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">21.6%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">ENCARGOS SOCIAIS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 125.416,22</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">7.4%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.03</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DESPESAS DE ESCRITÓRIO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 16.302,20</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">1.0%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.04</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">SISTEMA</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 16.723,95</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">1.0%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.05</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">ALUGUEIS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 15.280,95</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.9%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.06</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DESPESAS FINANCEIRAS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 8.552,01</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.5%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.07</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">SERVIÇOS DE TERCEIROS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 103.445,48</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">6.1%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.08</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">TAXAS E LICENÇAS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 5.483,29</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.3%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.09</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">COMUNICAÇÃO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 13.009,49</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.8%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="04" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">04.10</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">PROPAGANDA E MARKETING</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 40.324,00</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">2.4%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="05" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">05</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) DESPESAS OPERACIONAIS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 102.715,03</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">6.0%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="05" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">05.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">MANUTENÇÕES</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 8.811,78</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.5%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="05" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">05.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">FROTA</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 93.837,25</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">5.5%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="05" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">05.03</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DESPESAS COM VIAGENS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 66,00</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="06" style="background:rgba(245,158,11,.06);border-left:3px solid var(--warn);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">06</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) INVESTIMENTOS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 350.030,17</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">20.5%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="06" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">06.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">IMOBILIZADO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 338.785,17</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">19.9%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="06" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">06.03</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">ATIVO FIXO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 11.245,00</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">0.7%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="07" style="background:rgba(245,158,11,.06);border-left:3px solid var(--warn);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">07</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) EMPRÉSTIMOS / FINANCIAMENTOS e PAR</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 43.224,40</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">2.5%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="07" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">07.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">EMPRÉSTIMOS</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 43.224,40</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">2.5%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="08" style="background:rgba(148,163,184,.06);border-left:3px solid var(--subtle);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">08</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">ADIANTAMENTOS A FORNECEDORES</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 0,00</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="09" style="background:rgba(148,163,184,.06);border-left:3px solid var(--subtle);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">09</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">ADIANTAMENTOS DE CLIENTES</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 0,00</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">0.0%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="10" style="background:rgba(59,130,246,.06);border-left:3px solid #3b82f6;">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">10</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) DISTRIBUIÇÃO DE LUCROS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 52.003,00</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">3.1%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="10" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">10.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">Distribuição de Lucros</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 52.003,00</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">3.1%</td>
+            </tr>
+<tr class="dre-macro-row" data-macro="11" style="background:rgba(239,68,68,.06);border-left:3px solid var(--danger);">
+              <td style="padding:11px 16px;font-weight:600;font-size:11px;color:var(--muted);letter-spacing:.5px;">11</td>
+              <td style="padding:11px 16px;font-weight:600;font-size:12.5px;color:var(--text);letter-spacing:.3px;">(-) IMPOSTOS</td>
+              <td style="padding:11px 16px;text-align:right;font-weight:600;font-size:13px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 275.125,10</td>
+              <td style="padding:11px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">16.1%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="11" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">11.01</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">DEDUÇÕES DA RECEITA BRUTA</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 154.456,07</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">9.1%</td>
+            </tr>
+<tr class="dre-sub-row" data-parent="11" style="background:rgba(15,23,42,.3);">
+              <td style="padding:8px 16px 8px 32px;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">11.02</td>
+              <td style="padding:8px 16px;font-size:11.5px;color:var(--subtle);">TRIBUTAÇÃO SOBRE O LUCRO</td>
+              <td style="padding:8px 16px;text-align:right;font-size:11.5px;color:var(--text);font-variant-numeric:tabular-nums;">R$ 120.669,03</td>
+              <td style="padding:8px 16px;text-align:right;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">7.1%</td>
+            </tr>
+<tr class="dre-total-row" style="background:rgba(239,68,68,.12);border-left:4px solid var(--danger);">
+              <td colspan="2" style="padding:14px 16px;font-weight:700;font-size:15px;color:var(--text);letter-spacing:.3px;">= RESULTADO LÍQUIDO</td>
+              <td style="padding:14px 16px;text-align:right;font-weight:700;font-size:15px;color:var(--danger);font-variant-numeric:tabular-nums;">(R$ 56.105,23)</td>
+              <td style="padding:14px 16px;text-align:right;font-size:11px;color:var(--subtle);font-variant-numeric:tabular-nums;">-3.3%</td>
+            </tr></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card" style="margin-top:16px;">
+            <div class="card-header"><div class="card-title">💹 Cascata de Resultado</div><div class="card-sub">Receita Bruta → Resultado Líquido</div></div>
+            <div class="card-body-pad"><div class="waterfall"><div class="wf-bar">
+          <div class="wf-bar-val">R$ 1.704.533,06</div>
+          <div class="wf-bar-rect" style="height:220px;background:var(--accent);"></div>
+          <div class="wf-bar-label">Rec. Bruta</div>
+        </div><div class="wf-bar">
+          <div class="wf-bar-val">R$ 1.704.400,46</div>
+          <div class="wf-bar-rect" style="height:219px;background:var(--accent2);"></div>
+          <div class="wf-bar-label">Rec. Líquida</div>
+        </div><div class="wf-bar">
+          <div class="wf-bar-val">R$ 1.480.263,44</div>
+          <div class="wf-bar-rect" style="height:191px;background:#22c55e;"></div>
+          <div class="wf-bar-label">Lucro Bruto</div>
+        </div><div class="wf-bar">
+          <div class="wf-bar-val">R$ 664.277,44</div>
+          <div class="wf-bar-rect" style="height:85px;background:#f59e0b;"></div>
+          <div class="wf-bar-label">EBITDA</div>
+        </div><div class="wf-bar">
+          <div class="wf-bar-val">(R$ 56.105,23)</div>
+          <div class="wf-bar-rect" style="height:7px;background:var(--danger);"></div>
+          <div class="wf-bar-label">Res. Líquido</div>
+        </div></div></div>
+          </div>
+        </div>
+        <div class="right-col">
+          <div class="card">
+            <div class="card-header"><div class="card-title">📈 Margens</div></div>
+            <div class="card-body-pad">
+      <div class="margin-bar">
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem Bruta</span><span class="margin-bar-val">86.8%</span></div>
+        <div class="margin-bar-track"><div class="margin-bar-fill" style="width:86.8%;background:linear-gradient(90deg,var(--accent),var(--accent2));"></div></div>
+      </div>
+      <div class="margin-bar">
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem EBITDA</span><span class="margin-bar-val">39.0%</span></div>
+        <div class="margin-bar-track"><div class="margin-bar-fill" style="width:39.0%;background:var(--green);"></div></div>
+      </div>
+      <div class="margin-bar">
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem Líquida</span><span class="margin-bar-val" style="color:var(--danger);">-3.3%</span></div>
+        <div class="margin-bar-track"><div class="margin-bar-fill" style="width:3.3%;background:var(--danger);"></div></div>
+      </div>
+    </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">💸 Top Despesas (Subgrupos)</div><div class="card-sub">Administrativas + Operacionais</div></div>
+            <div class="card-body-pad"><div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.01">DESPESAS COM PESSOAL</span>
+            <span class="margin-bar-val">R$ 368.733,38</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:100.0%;background:var(--danger);"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.01</span><span>21.6% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.02">ENCARGOS SOCIAIS</span>
+            <span class="margin-bar-val">R$ 125.416,22</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:34.0%;background:#f97316;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.02</span><span>7.4% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.07">SERVIÇOS DE TERCEIROS</span>
+            <span class="margin-bar-val">R$ 103.445,48</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:28.1%;background:var(--warn);"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.07</span><span>6.1% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="05.02">FROTA</span>
+            <span class="margin-bar-val">R$ 93.837,25</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:25.4%;background:#eab308;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>05.02</span><span>5.5% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.10">PROPAGANDA E MARKETING</span>
+            <span class="margin-bar-val">R$ 40.324,00</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:10.9%;background:var(--accent2);"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.10</span><span>2.4% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.04">SISTEMA</span>
+            <span class="margin-bar-val">R$ 16.723,95</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:4.5%;background:#6366f1;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.04</span><span>1.0% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.03">DESPESAS DE ESCRITÓRIO</span>
+            <span class="margin-bar-val">R$ 16.302,20</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:4.4%;background:#8b5cf6;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.03</span><span>1.0% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.05">ALUGUEIS</span>
+            <span class="margin-bar-val">R$ 15.280,95</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:4.1%;background:var(--subtle);"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.05</span><span>0.9% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="04.09">COMUNICAÇÃO</span>
+            <span class="margin-bar-val">R$ 13.009,49</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:3.5%;background:#64748b;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>04.09</span><span>0.8% da Rec. Líq.</span>
+          </div>
+        </div>
+<div class="margin-bar">
+          <div class="margin-bar-label">
+            <span class="margin-bar-name" title="05.01">MANUTENÇÕES</span>
+            <span class="margin-bar-val">R$ 8.811,78</span>
+          </div>
+          <div class="margin-bar-track"><div class="margin-bar-fill" style="width:2.4%;background:#475569;"></div></div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:3px;display:flex;justify-content:space-between;">
+            <span>05.01</span><span>0.5% da Rec. Líq.</span>
+          </div>
+        </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="nota-tec">
+      <strong>⚠️ DRE Gerencial — Visão Diretoria</strong>
+      <ul class="nota-list">
+        <li>📊 Período: 01/04/2026 — 30/04/2026</li>
+        <li>💼 Origem: Planilha Projeção 2026 (visão consolidada, sem segmentação PF/PJ)</li>
+        <li>💸 Carga Tributária: R$ 275.125,10 (16.1% sobre Receita Bruta)</li>
+        <li>📈 EBITDA: <strong>Saudável</strong> — margem 39.0% (Saudável ≥25% / Moderado 15–25% / Atenção &lt;15%)</li>
+        <li>🏦 Empréstimos e Financiamentos: R$ 43.224,40</li>
+        <li>💰 Investimentos no período: R$ 350.030,17</li>
+        <li>🎯 Distribuição de Lucros: R$ 52.003,00</li>
+      </ul>
+    </div>
+    </div><div id="content-ytd" class="tab-content">
+      <header><div class="header-top">
+        <div><div class="brand-name">SIM.DIGITAL</div><div class="brand-sub">DRE Gerencial — REDEMETRO TELECOMUNICAÇÕES LTDA</div></div>
+        <div style="text-align:right;"><div class="periodo-badge">YTD 2026 (Jan–Abr)</div><div class="update-time">4 meses consolidados • Atualizado em 18/05/2026</div></div>
+      </div></header>
+      
+      <div class="kpi-strip">
+        <div class="kpi-item"><div class="kpi-label">Receita Bruta YTD</div><div class="kpi-value">R$ 6.819.477,37</div><div class="kpi-pct">Jan–Abr 2026</div></div>
+        <div class="kpi-item"><div class="kpi-label">Receita Líquida YTD</div><div class="kpi-value accent">R$ 6.819.344,77</div><div class="kpi-pct">AV 100,0%</div></div>
+        <div class="kpi-item"><div class="kpi-label">Lucro Bruto YTD</div><div class="kpi-value">R$ 5.981.869,80</div><div class="kpi-pct pos">Margem 87.7%</div></div>
+        <div class="kpi-item"><div class="kpi-label">EBITDA YTD</div><div class="kpi-value">R$ 2.877.965,53</div><div class="kpi-pct pos">Margem 42.2%</div></div>
+        <div class="kpi-item"><div class="kpi-label">Resultado Líq. YTD</div><div class="kpi-value pos">R$ 241.281,46</div><div class="kpi-pct pos">Margem 3.5%</div></div>
+        <div class="kpi-item"><div class="kpi-label">Total Despesas YTD</div><div class="kpi-value">R$ 6.578.195,91</div><div class="kpi-pct">96.5% da RB</div></div>
+      </div>
+      
+      <div class="comp-grid"><div class="comp-card">
+          <div class="comp-card-month">jan/26</div>
+          <div class="comp-card-val" style="color:var(--accent);">1.691.724,28</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:4px;">Receita Bruta</div>
+          <div style="height:1px;background:var(--border);margin:10px 0;"></div>
+          <div style="font-size:13px;color:var(--green);font-variant-numeric:tabular-nums;font-weight:700;">75.441,98</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">Resultado Líquido (4.5%)</div>
+        </div><div class="comp-card">
+          <div class="comp-card-month">fev/26</div>
+          <div class="comp-card-val" style="color:var(--accent);">1.704.545,11</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:4px;">Receita Bruta</div>
+          <div style="height:1px;background:var(--border);margin:10px 0;"></div>
+          <div style="font-size:13px;color:var(--green);font-variant-numeric:tabular-nums;font-weight:700;">77.596,13</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">Resultado Líquido (4.6%)</div>
+        </div><div class="comp-card">
+          <div class="comp-card-month">mar/26</div>
+          <div class="comp-card-val" style="color:var(--accent);">1.718.674,92</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:4px;">Receita Bruta</div>
+          <div style="height:1px;background:var(--border);margin:10px 0;"></div>
+          <div style="font-size:13px;color:var(--green);font-variant-numeric:tabular-nums;font-weight:700;">144.348,58</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">Resultado Líquido (8.4%)</div>
+        </div><div class="comp-card">
+          <div class="comp-card-month">abr/26</div>
+          <div class="comp-card-val" style="color:var(--accent);">1.704.533,06</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:4px;">Receita Bruta</div>
+          <div style="height:1px;background:var(--border);margin:10px 0;"></div>
+          <div style="font-size:13px;color:var(--danger);font-variant-numeric:tabular-nums;font-weight:700;">(56.105,23)</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">Resultado Líquido (-3.3%)</div>
+        </div></div>
+      
+      <div class="dashboard-grid">
+        <div class="left-col">
+          <div class="card">
+            <div class="card-header"><div class="card-title">📊 Comparativo Mensal — Jan a Abr 2026</div><div class="card-sub">Visão consolidada por linha do DRE</div></div>
+            <div class="card-body">
+              <table class="hist-table">
+                <thead><tr><th style="text-align:left;">Linha</th><th>jan/26</th><th>fev/26</th><th>mar/26</th><th>abr/26</th><th style="background:rgba(0,212,170,.08);">YTD</th></tr></thead>
+                <tbody><tr style=""><td style="text-align:left !important;font-weight:500;">Receita Bruta</td><td style="color:var(--accent);">R$ 1.691.724,28</td><td style="color:var(--accent);">R$ 1.704.545,11</td><td style="color:var(--accent);">R$ 1.718.674,92</td><td style="color:var(--accent);">R$ 1.704.533,06</td><td style="color:var(--accent);font-weight:700;background:rgba(15,23,42,.4);">R$ 6.819.477,37</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Receita Líquida</td><td style="color:var(--accent2);">R$ 1.691.724,28</td><td style="color:var(--accent2);">R$ 1.704.545,11</td><td style="color:var(--accent2);">R$ 1.718.674,92</td><td style="color:var(--accent2);">R$ 1.704.400,46</td><td style="color:var(--accent2);font-weight:700;background:rgba(15,23,42,.4);">R$ 6.819.344,77</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Custos do Serviço</td><td style="color:var(--danger);">R$ 185.791,49</td><td style="color:var(--danger);">R$ 211.182,35</td><td style="color:var(--danger);">R$ 216.364,11</td><td style="color:var(--danger);">R$ 224.137,02</td><td style="color:var(--danger);font-weight:700;background:rgba(15,23,42,.4);">R$ 837.474,97</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Lucro Bruto</td><td style="color:var(--green);">R$ 1.505.932,79</td><td style="color:var(--green);">R$ 1.493.362,76</td><td style="color:var(--green);">R$ 1.502.310,81</td><td style="color:var(--green);">R$ 1.480.263,44</td><td style="color:var(--green);font-weight:700;background:rgba(15,23,42,.4);">R$ 5.981.869,80</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Despesas Administrativas</td><td style="color:var(--danger);">R$ 672.907,90</td><td style="color:var(--danger);">R$ 683.481,85</td><td style="color:var(--danger);">R$ 593.965,08</td><td style="color:var(--danger);">R$ 713.270,97</td><td style="color:var(--danger);font-weight:700;background:rgba(15,23,42,.4);">R$ 2.663.625,80</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Despesas Operacionais</td><td style="color:var(--danger);">R$ 128.138,02</td><td style="color:var(--danger);">R$ 112.687,20</td><td style="color:var(--danger);">R$ 96.738,22</td><td style="color:var(--danger);">R$ 102.715,03</td><td style="color:var(--danger);font-weight:700;background:rgba(15,23,42,.4);">R$ 440.278,47</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">EBITDA</td><td style="color:var(--warn);">R$ 704.886,87</td><td style="color:var(--warn);">R$ 697.193,71</td><td style="color:var(--warn);">R$ 811.607,51</td><td style="color:var(--warn);">R$ 664.277,44</td><td style="color:var(--warn);font-weight:700;background:rgba(15,23,42,.4);">R$ 2.877.965,53</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Investimentos</td><td style="color:var(--warn);">R$ 382.864,12</td><td style="color:var(--warn);">R$ 347.782,22</td><td style="color:var(--warn);">R$ 353.699,77</td><td style="color:var(--warn);">R$ 350.030,17</td><td style="color:var(--warn);font-weight:700;background:rgba(15,23,42,.4);">R$ 1.434.376,28</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Empréstimos/Financ.</td><td style="color:var(--warn);">R$ 13.476,64</td><td style="color:var(--warn);">R$ 26.683,20</td><td style="color:var(--warn);">R$ 55.763,65</td><td style="color:var(--warn);">R$ 43.224,40</td><td style="color:var(--warn);font-weight:700;background:rgba(15,23,42,.4);">R$ 139.147,89</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Distribuição de Lucros</td><td style="color:#3b82f6;">R$ 132.187,00</td><td style="color:#3b82f6;">R$ 129.338,96</td><td style="color:#3b82f6;">R$ 152.004,00</td><td style="color:#3b82f6;">R$ 52.003,00</td><td style="color:#3b82f6;font-weight:700;background:rgba(15,23,42,.4);">R$ 465.532,96</td></tr><tr style=""><td style="text-align:left !important;font-weight:500;">Impostos</td><td style="color:var(--danger);">R$ 100.917,13</td><td style="color:var(--danger);">R$ 115.793,20</td><td style="color:var(--danger);">R$ 105.791,51</td><td style="color:var(--danger);">R$ 275.125,10</td><td style="color:var(--danger);font-weight:700;background:rgba(15,23,42,.4);">R$ 597.626,94</td></tr><tr style="background:rgba(0,212,170,.08);border-left:3px solid var(--accent);font-weight:700;"><td style="text-align:left !important;font-weight:700;">Resultado Líquido</td><td style="color:var(--green);">R$ 75.441,98</td><td style="color:var(--green);">R$ 77.596,13</td><td style="color:var(--green);">R$ 144.348,58</td><td style="color:var(--danger);">(R$ 56.105,23)</td><td style="color:var(--green);font-weight:700;background:rgba(15,23,42,.4);">R$ 241.281,46</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="right-col">
+          <div class="card">
+            <div class="card-header"><div class="card-title">📈 Margens Acumuladas (YTD)</div></div>
+            <div class="card-body-pad">
+      <div class="margin-bar">
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem Bruta YTD</span><span class="margin-bar-val">87.7%</span></div>
+        <div class="margin-bar-track"><div class="margin-bar-fill" style="width:87.7%;background:linear-gradient(90deg,var(--accent),var(--accent2));"></div></div>
+      </div>
+      <div class="margin-bar">
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem EBITDA YTD</span><span class="margin-bar-val">42.2%</span></div>
+        <div class="margin-bar-track"><div class="margin-bar-fill" style="width:42.2%;background:var(--green);"></div></div>
+      </div>
+      <div class="margin-bar">
+        <div class="margin-bar-label"><span class="margin-bar-name">Margem Líquida YTD</span><span class="margin-bar-val" style="color:var(--green);">3.5%</span></div>
+        <div class="margin-bar-track"><div class="margin-bar-fill" style="width:3.5%;background:var(--green);"></div></div>
+      </div>
+    </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><div class="card-title">📊 Evolução Mensal</div><div class="card-sub">Receita Bruta vs Total Despesas</div></div>
+            <div class="card-body-pad">
+              <div style="display:flex;gap:12px;align-items:flex-end;padding:10px 0;"><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
+          <div style="display:flex;gap:4px;align-items:flex-end;height:180px;">
+            <div style="width:24px;background:var(--accent);height:177px;border-radius:3px 3px 0 0;" title="RB"></div>
+            <div style="width:24px;background:var(--danger);opacity:.7;height:169px;border-radius:3px 3px 0 0;" title="Despesas"></div>
+          </div>
+          <div style="font-size:10px;color:var(--subtle);">jan/26</div>
+          <div style="font-size:10px;color:var(--green);font-weight:600;">75.441,98</div>
+        </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
+          <div style="display:flex;gap:4px;align-items:flex-end;height:180px;">
+            <div style="width:24px;background:var(--accent);height:178px;border-radius:3px 3px 0 0;" title="RB"></div>
+            <div style="width:24px;background:var(--danger);opacity:.7;height:170px;border-radius:3px 3px 0 0;" title="Despesas"></div>
+          </div>
+          <div style="font-size:10px;color:var(--subtle);">fev/26</div>
+          <div style="font-size:10px;color:var(--green);font-weight:600;">77.596,13</div>
+        </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
+          <div style="display:flex;gap:4px;align-items:flex-end;height:180px;">
+            <div style="width:24px;background:var(--accent);height:180px;border-radius:3px 3px 0 0;" title="RB"></div>
+            <div style="width:24px;background:var(--danger);opacity:.7;height:164px;border-radius:3px 3px 0 0;" title="Despesas"></div>
+          </div>
+          <div style="font-size:10px;color:var(--subtle);">mar/26</div>
+          <div style="font-size:10px;color:var(--green);font-weight:600;">144.348,58</div>
+        </div><div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
+          <div style="display:flex;gap:4px;align-items:flex-end;height:180px;">
+            <div style="width:24px;background:var(--accent);height:178px;border-radius:3px 3px 0 0;" title="RB"></div>
+            <div style="width:24px;background:var(--danger);opacity:.7;height:184px;border-radius:3px 3px 0 0;" title="Despesas"></div>
+          </div>
+          <div style="font-size:10px;color:var(--subtle);">abr/26</div>
+          <div style="font-size:10px;color:var(--danger);font-weight:600;">(56.105,23)</div>
+        </div></div>
+              <div style="display:flex;gap:16px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:10px;color:var(--subtle);justify-content:center;">
+                <div style="display:flex;align-items:center;gap:6px;"><div style="width:10px;height:10px;background:var(--accent);border-radius:2px;"></div>Receita Bruta</div>
+                <div style="display:flex;align-items:center;gap:6px;"><div style="width:10px;height:10px;background:var(--danger);opacity:.7;border-radius:2px;"></div>Total Despesas</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="nota-tec">
+        <strong>📋 Notas Técnicas — YTD 2026</strong>
+        <ul class="nota-list">
+          <li>📊 Período consolidado: 01/01/2026 a 30/04/2026 (4 meses)</li>
+          <li>💼 Origem: Planilha Projeção 2026 — visão Diretoria (consolidada, sem PF/PJ)</li>
+          <li>💸 Carga Tributária acumulada: R$ 597.626,94 (8.8% da Receita Bruta)</li>
+          <li>📈 EBITDA YTD: <strong>Saudável</strong> — margem 42.2%</li>
+          <li>🏦 Empréstimos e Financiamentos no período: R$ 139.147,89</li>
+          <li>💰 Investimentos acumulados: R$ 1.434.376,28</li>
+          <li>🎯 Distribuição de Lucros acumulada: R$ 465.532,96</li>
+        </ul>
+      </div>
+    </div>
+</div>
+<script>
+function doLogin(){
+  const u=document.getElementById('loginUser').value.trim();
+  const p=document.getElementById('loginPass').value;
+  const err=document.getElementById('loginError');
+  if(u==='DRESIM' && p==='Sim2026*'){
+    document.getElementById('loginOverlay').style.display='none';
+    document.getElementById('dre-content').classList.add('unlocked');
+  } else {
+    err.textContent='Login ou senha incorretos.';
+    setTimeout(()=>{err.textContent='';}, 3000);
+  }
+}
+document.addEventListener('keydown', e=>{
+  if(e.key==='Enter' && document.getElementById('loginOverlay').style.display!=='none'){doLogin();}
+});
+
+function switchTab(tab){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  document.getElementById('content-'+tab).classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
